@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.hsbc.dao.EmployeeDaoImpl;
 import com.hsbc.model.Employee;
@@ -38,10 +39,13 @@ public class EmployeeLoginServlet extends HttpServlet {
 		employee.setEmployeeid(employeeid);
 		employee.setPassword(password);
 		EmployeeDaoImpl employeelogin= new EmployeeDaoImpl();
+		
 		if(employeelogin.employeeLoginValidate(employee))
 		{
-			RequestDispatcher rd= request.getRequestDispatcher("ProfileServlet");
-			rd.forward(request, response);
+
+			HttpSession session = request.getSession();
+			session.setAttribute("empid", employee.getEmployeeid());
+			response.sendRedirect("EmployeeProfileServlet");
 			
 		}
 		else

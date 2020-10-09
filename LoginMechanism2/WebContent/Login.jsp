@@ -27,6 +27,13 @@
 
 				</tr>
 			</table>
+			<%               
+            String str1=(String) request.getAttribute("errormsg");
+                if(str1!=null)
+                {%>
+                	<h3 style="margin-top: 2cm; color:#ffffff"><%out.print(str1);
+                }
+                %>
 		</center>
 	</div>
 

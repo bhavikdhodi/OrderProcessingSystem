@@ -14,8 +14,8 @@ import javax.servlet.http.HttpSession;
 /**
  * Servlet implementation class ProfileServlet
  */
-@WebServlet("/ProfileServlet")
-public class ProfileServlet extends HttpServlet {
+@WebServlet("/CustomerProfileServlet")
+public class CustomerProfileServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
    
@@ -29,22 +29,29 @@ public class ProfileServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		PrintWriter out=response.getWriter();
+//		PrintWriter out=response.getWriter();
 		HttpSession session= request.getSession(false);
+		try {
 		if(session!=null)
 		{
-			out.println((int)session.getAttribute("customerid"));
-			out.print("WELCOME TO YOUR PROFILE!!!!!!");
-			session.invalidate();
-			
+			RequestDispatcher rd= request.getRequestDispatcher("CustomerProfile.jsp");
+			request.setAttribute("profileid", (int)session.getAttribute("customerid"));
+			request.setAttribute("welcomemsg","Welcome to your Profile!!!!");
+			rd.forward(request, response);
 		}
 		else
 		{
-			RequestDispatcher rd= request.getRequestDispatcher("CustomerLogin.jsp");
+			RequestDispatcher rd= request.getRequestDispatcher("Login.jsp");
 			request.setAttribute("errormsg", "Session Expired...Login Again!!");
 			rd.forward(request, response);
 		}
-		
+		}
+		catch (Exception e) {
+			RequestDispatcher rd= request.getRequestDispatcher("Login.jsp");
+			request.setAttribute("errormsg", "Session Expired...Login Again!!");
+			rd.forward(request, response);
+			
+		}
 	}
 
 }
