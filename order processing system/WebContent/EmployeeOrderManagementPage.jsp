@@ -10,11 +10,7 @@
 <title>Hello, world!</title>
 </head>
   <body>
-  <% if(session == null){
-	  RequestDispatcher rd = request.getRequestDispatcher("LogoutPage.jsp");
-	  request.setAttribute("errormsg", "session expired login again!!");
-	  rd.forward(request, response);
-	  }%>
+  
   
     <h1 style="color: #ef241c;">EMPLOYEE ORDER MANAGEMENT PAGE!</h1>
     <div>

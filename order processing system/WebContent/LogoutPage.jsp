@@ -9,11 +9,5 @@
 <body>
 <h2 style="text-align: center;color: #ef241c;"> logout successfull !!</h2>
 
-<%
-String errormsg=(String)request.getAttribute("errormsg");
-if(errormsg!=null){
-	out.println(errormsg);
-}
-%>
 </body>
 </html>
