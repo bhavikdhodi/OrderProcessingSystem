@@ -43,8 +43,9 @@ public class CustomerLoginServlet extends HttpServlet {
 		if(customerlogin.customerLoginValidate(customer))
 		{
 			HttpSession session = request.getSession();
-			session.setAttribute("customerid", customer.getCustomerid());
-			response.sendRedirect("CustomerProfileServlet");
+			session.setAttribute("customerid", customerid);
+			session.setAttribute("details",customerlogin.getCustomer(customerid));
+			response.sendRedirect("CustomerOrderManagement");
 			
 		}
 		else

@@ -1,7 +1,6 @@
 package com.hsbc.controllers;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -11,14 +10,17 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.hsbc.model.Customer;
+
+
 /**
- * Servlet implementation class ProfileServlet
+ * Servlet implementation class CustomerOrderManagement
  */
-@WebServlet("/CustomerProfileServlet")
-public class CustomerProfileServlet extends HttpServlet {
+@WebServlet("/CustomerOrderManagement")
+public class CustomerOrderManagement extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-   
+    
+	   
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doPost(request, response);
@@ -31,12 +33,18 @@ public class CustomerProfileServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 //		PrintWriter out=response.getWriter();
 		HttpSession session= request.getSession(false);
+//		System.out.println("Hello");
 		try {
 		if(session!=null)
 		{
-			RequestDispatcher rd= request.getRequestDispatcher("CustomerProfile.jsp");
-			request.setAttribute("profileid", (int)session.getAttribute("customerid"));
-			request.setAttribute("welcomemsg","Welcome to your Profile!!!!");
+		
+			int customerId = (Integer)session.getAttribute("customerid");
+			Customer customer= (Customer)session.getAttribute("details");
+			System.out.println("customer id"+ customerId);
+			RequestDispatcher rd= request.getRequestDispatcher("CustomerOrderManagement.jsp");
+//			request.setAttribute("customerId", customerId);
+			
+			request.setAttribute("custName",customer.getName());
 			rd.forward(request, response);
 		}
 		else
@@ -52,6 +60,6 @@ public class CustomerProfileServlet extends HttpServlet {
 			rd.forward(request, response);
 			
 		}
-	}
 
+	}
 }

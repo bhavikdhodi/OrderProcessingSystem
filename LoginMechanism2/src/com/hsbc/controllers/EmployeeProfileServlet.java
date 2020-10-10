@@ -31,7 +31,7 @@ public class EmployeeProfileServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		PrintWriter out=response.getWriter();
 		HttpSession session= request.getSession(false);
-		try {
+	try {
 		if(session!=null)
 		{
 			RequestDispatcher rd= request.getRequestDispatcher("EmployeeProfile.jsp");
@@ -45,8 +45,8 @@ public class EmployeeProfileServlet extends HttpServlet {
 			request.setAttribute("errormsg", "Session Expired...Login Again!!");
 			rd.forward(request, response);
 		}
-		}
-		catch (Exception e) {
+	    }
+		catch (NullPointerException e) {
 			RequestDispatcher rd= request.getRequestDispatcher("Login.jsp");
 			request.setAttribute("errormsg", "Session Expired...Login Again!!");
 			rd.forward(request, response);
