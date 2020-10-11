@@ -1,0 +1,22 @@
+{
+    "product": [{
+            "productID": "106",
+            "productName": "Product4",
+            "productPrice": "100.0",
+            "productLevel": "Level1"
+
+        },
+        {
+            "productID": "107",
+            "productName": "Product5",
+            "productPrice": "200.0",
+            "productLevel": "Level2"
+        },
+        {
+            "productID": "108",
+            "productName": "Product6",
+            "productPrice": "700.0",
+            "productLevel": "Level3"
+        }
+    ]
+}
